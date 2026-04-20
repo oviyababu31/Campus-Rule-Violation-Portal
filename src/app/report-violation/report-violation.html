@@ -1,0 +1,40 @@
+<div style="max-width: 500px; margin: 20px auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px; background: #f9f9f9;">
+  <h2 style="text-align: center; color: #c0392b;">Generate Fine</h2>
+  
+  <div style="display: grid; gap: 10px;">
+    <!-- Name Input -->
+    <label>Student Name</label>
+    <input [(ngModel)]="studentName" placeholder="Full Name" style="padding: 10px;">
+    
+    <!-- Roll No Input -->
+    <label>Roll Number</label>
+    <input [(ngModel)]="rollNo" placeholder="Roll No" style="padding: 10px;">
+    
+    <!-- Year and Section -->
+    <div style="display: flex; gap: 10px;">
+      <select [(ngModel)]="year" style="flex: 1; padding: 10px;">
+        <option value="">Select Year</option>
+        <option value="I Year">I Year</option>
+        <option value="II Year">II Year</option>
+        <option value="III Year">III Year</option>
+        <option value="IV Year">IV Year</option>
+      </select>
+      <input [(ngModel)]="section" placeholder="Section (A/B)" style="flex: 1; padding: 10px;">
+    </div>
+
+    <!-- Reason Dropdown -->
+    <label>Violation Reason</label>
+    <select [(ngModel)]="selectedReason" style="padding: 10px;">
+      <option value="">-- Select Reason --</option>
+      <option *ngFor="let item of fineRates | keyvalue" [value]="item.key">
+        {{ item.key }} (₹{{ item.value }})
+      </option>
+    </select>
+
+    <!-- Submit Button -->
+    <button (click)="submitFine()" [disabled]="!studentName || !rollNo || !selectedReason" 
+            style="padding: 15px; background: #c0392b; color: white; border: none; cursor: pointer; border-radius: 5px; margin-top: 10px;">
+      Confirm & Generate Fine
+    </button>
+  </div>
+</div>
